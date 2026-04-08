@@ -2,6 +2,9 @@ import bcrypt from 'bcryptjs';
 import pool from '../config/db.js';
 import generateToken from '../utils/generateToken.js';
 
+const normalizePasswordHash = (hash = '') =>
+  (typeof hash === 'string' ? hash.replace(/^\$2y\$/, '$2a$') : hash);
+
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -20,7 +23,7 @@ export const login = async (req, res) => {
     }
 
     const user = rows[0];
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, normalizePasswordHash(user.password));
 
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid credentials.' });

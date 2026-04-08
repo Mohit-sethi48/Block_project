@@ -22,9 +22,13 @@ const LoginPage = () => {
       const response = await api.post('/auth/login', formData);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      navigate('/');
+      navigate('/admin');
     } catch (requestError) {
-      setError(requestError.response?.data?.message || 'Login failed.');
+      if (!requestError.response) {
+        setError('Backend ya API reachable nahi hai. Server chal raha hai aur `/api` route open ho raha hai, yeh check karo.');
+      } else {
+        setError(requestError.response.data?.message || 'Login failed.');
+      }
     } finally {
       setLoading(false);
     }
@@ -36,7 +40,7 @@ const LoginPage = () => {
         <p className="brand-kicker">Node + React + MySQL</p>
         <h1>Admin Login</h1>
         <p className="muted-text">
-          Apne admin credentials se sign in karein aur users aur lists manage karein.
+          Apne admin credentials se sign in karein aur users, lists aur blogs manage karein.
         </p>
         <form className="panel form-grid" onSubmit={handleSubmit}>
           <label>

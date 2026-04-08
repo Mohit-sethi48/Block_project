@@ -15,8 +15,8 @@ const DashboardPage = () => {
       <div className="stats-grid">
         <article className="stat-card">
           <span>Total Modules</span>
-          <strong>2</strong>
-          <p>Users aur Lists management ready hai.</p>
+          <strong>3</strong>
+          <p>Users, Lists aur Blogs management ready hai.</p>
         </article>
         <article className="stat-card">
           <span>Backend</span>

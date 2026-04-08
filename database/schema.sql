@@ -20,11 +20,28 @@ CREATE TABLE IF NOT EXISTS lists (
   CONSTRAINT fk_lists_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS blogs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(180) NOT NULL,
+  slug VARCHAR(200) NOT NULL UNIQUE,
+  category VARCHAR(120) NULL,
+  tags TEXT NULL,
+  excerpt TEXT,
+  content LONGTEXT NOT NULL,
+  image_data LONGTEXT NULL,
+  status VARCHAR(50) NOT NULL DEFAULT 'draft',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 INSERT INTO users (name, email, password, role)
 VALUES (
   'Admin User',
   'admin@example.com',
-  '$2y$10$gjdVVbEloLm5ZGsf/5z4/urUVTU5WYJM0WJTR09b3bagFO3gnD3Cy',
+  '$2a$10$CoGOfMYPdGwlqR6fYTDZRuxaMTJXGy5NafhN9l2Ac3zmuq9nsqrNG',
   'admin'
 )
-ON DUPLICATE KEY UPDATE email = VALUES(email);
+ON DUPLICATE KEY UPDATE
+  name = VALUES(name),
+  password = VALUES(password),
+  role = VALUES(role);

@@ -18,6 +18,9 @@ This project contains:
 3. Install packages with `npm install`
 4. Start backend with `npm run dev`
 
+Important:
+If you open the site from another device, server IP, or domain, set `CORS_ORIGIN` in `backend/.env` to that frontend URL.
+
 ## Frontend Setup
 
 1. Install packages in `frontend/` with `npm install`
@@ -39,6 +42,12 @@ Then start both apps together from the project root:
 npm run dev
 ```
 
+Frontend dev server now runs on `0.0.0.0:5173`, so you can open it with your server IP too, for example:
+
+```bash
+http://YOUR_SERVER_IP:5173
+```
+
 Useful extra commands:
 
 ```bash
@@ -54,3 +63,5 @@ Run this from the project root:
 ```bash
 mysql -u root -padmin < database/schema.sql
 ```
+
+If backend startup fails, confirm MySQL is running on the host and that `backend/.env` matches your real database credentials.

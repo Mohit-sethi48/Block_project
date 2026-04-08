@@ -7,7 +7,7 @@ const Layout = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    navigate('/login');
+    navigate('/admin/login');
   };
 
   return (
@@ -18,9 +18,10 @@ const Layout = () => {
           <h1 className="brand-title">Control Room</h1>
         </div>
         <nav className="nav-links">
-          <NavLink to="/">Dashboard</NavLink>
-          <NavLink to="/users">Users</NavLink>
-          <NavLink to="/lists">Lists</NavLink>
+          <NavLink to="/admin">Dashboard</NavLink>
+          <NavLink to="/admin/blogs">Blogs</NavLink>
+          <NavLink to="/admin/users">Users</NavLink>
+          <NavLink to="/admin/lists">Lists</NavLink>
         </nav>
       </aside>
       <main className="content">
