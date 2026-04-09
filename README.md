@@ -25,6 +25,7 @@ If you open the site from another device, server IP, or domain, set `CORS_ORIGIN
 
 1. Install packages in `frontend/` with `npm install`
 2. Start frontend with `npm run dev`
+3. Open `http://YOUR_SERVER_IP:5000` while developing
 
 ## Run Frontend + Backend Together
 
@@ -42,10 +43,10 @@ Then start both apps together from the project root:
 npm run dev
 ```
 
-Frontend dev server now runs on `0.0.0.0:5173`, so you can open it with your server IP too, for example:
+Frontend dev server now runs on `0.0.0.0:5000`, so you can open it with your server IP too, for example:
 
 ```bash
-http://YOUR_SERVER_IP:5173
+http://YOUR_SERVER_IP:5000
 ```
 
 Useful extra commands:
@@ -54,6 +55,21 @@ Useful extra commands:
 npm run dev:backend
 npm run dev:frontend
 npm run build
+```
+
+## Production Server Run
+
+Build the frontend once, then run only the backend. The backend now serves files from `frontend/dist`, so you do not need `vite` in production.
+
+```bash
+npm run build
+npm start
+```
+
+Open:
+
+```bash
+http://YOUR_SERVER_IP:5001
 ```
 
 ## Database Setup
